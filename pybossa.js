@@ -195,6 +195,33 @@
         }
     };
 
+    pybossa.flagTask = function (taskId,reason) {
+        console.log("flag task!")
+        var task = {
+            'reason':reason,
+            'task_id':taskId
+        };
+        task = JSON.stringify(task);
+        console.log("flag 2!")
+        
+
+        return _updateTask(task).then(function(data) {return data;});
+        // return pybossa.newTask("sample");
+
+        
+    };
+
+    function _updateTask(task) {
+        console.log("flag in update task!")
+        return $.ajax({
+            type: 'POST',
+            url: url + 'api/mktask',
+            dataType: 'json',
+            contentType: 'application/json',
+            data: task
+        });
+    }
+
     pybossa.getCurrentTaskId = function (url) {
         if (url !== undefined) {
             return _getCurrentTaskId(url);
