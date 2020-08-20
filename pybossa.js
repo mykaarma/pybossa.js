@@ -17,7 +17,15 @@
 
 
 (function(pybossa, $, undefined) {
-    var url = '/';
+    var str = window.location.pathname;
+    if(str.indexOf("project")!=1){
+        var url = str.substring(0,str.indexOf("project",1));
+    }   
+    else{
+        var url = '/';
+    }
+    
+    // var url = '/';
 
     //AJAX calls
     function _userProgress(projectname) {
